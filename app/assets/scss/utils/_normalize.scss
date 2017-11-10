@@ -1,0 +1,27 @@
+*, *:before, *:after{
+	@include box-sizing(border-box);
+	-webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+}
+
+a{
+	display: block;
+	outline: 0;
+	text-decoration: none;
+}
+
+span{
+	display: block;
+}
+
+input, button{
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+}
+
+body{
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
