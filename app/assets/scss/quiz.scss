@@ -1,0 +1,17 @@
+#quiz{
+    > div{
+        &:first-of-type{
+            .actor{
+                display: none;
+                &.active{
+                    display: block;
+                }
+            }
+        }
+        #share-whatsapp{
+            @media(min-width: $desktop){
+                display: none;
+            }
+        }
+    }
+}

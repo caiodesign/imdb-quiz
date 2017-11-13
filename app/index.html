@@ -1,8 +1,38 @@
-<html>
+<html ng-app="imdb-quiz">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
         <link rel="stylesheet" href="/assets/css/style.css">
     </head>
-    <body>
-        <h1>Hello Word</h1>
+    <body ng-controller="QuizController">
+
+        
+        <div id="quiz">
+            <h1>IMDB Quiz</h1>
+            <p>What is the name of this Marvel Actor?</p>
+            <div>
+                <div class="actor" ng-repeat="actor in movieInfo.cast" data-index="{{$index}}" data-name="{{actor.name}}" on-finish-render="ngRepeatFinished">
+                    <img src="{{actor.image}}" alt="{{actor.name}}">
+                </div>
+            </div>
+            <div>
+                <input type="text" name="name" placeholder="Digite o nome do ator aqui">
+                <button name="submit" type="submit">Answer</button>
+            </div>
+            <div>
+                <p>Score: <span class="current-score"></span></p>
+                <a href="javascript:void(0)" id="tip"></a>
+                <a href="whatsapp://send?text=The text to share!" id="share-whatsapp" data-action="share/whatsapp/share"></a>
+            </div>
+        </div>
+
+
     </body>
+
+    <script src="/assets/js/_lib/jquery.min.js"></script>
+    <script src="/assets/js/_lib/angular.min.js"></script>
+
+    <script src="/assets/js/app.js"></script>
+    <script src="/assets/js/controllers/quiz-controller.js"></script>
+    <script src="/assets/js/directives/on-finish-render.js"></script>
 </html>

@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+}
+input{
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 20px 10px;
+    border-radius: 3px;
+    font-size: calc(26/640 * 100vw);
+
+    @media(min-width: $desktop){
+        font-size: 26px;
+    }
+}
+button[type="submit"]{
+    @extend input;
+    background-color: $red;
+    cursor: pointer;
+}
