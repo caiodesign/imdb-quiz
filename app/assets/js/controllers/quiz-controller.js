@@ -29,6 +29,13 @@ angular.module('imdb-quiz').controller('QuizController', ['$scope', '$http', '$r
         scoreWatch(score);
         currentScore.textContent = score; 
 
+        function animateMe(that, myClass){
+            $(that).addClass("animated " + myClass);
+            setTimeout(function(){
+                $(that).removeClass("animated " + myClass);
+            }, 1500);
+        }
+
         $('#tip').on('click', function(event){
             event.preventDefault();
             tip = true;
@@ -47,8 +54,10 @@ angular.module('imdb-quiz').controller('QuizController', ['$scope', '$http', '$r
                 if(inputValue == currentActor){
                     if(tip == false){
                         score++;
+                        animateMe(".current-score", "flash");
                     }
                     input.val(null);
+                    animateMe(this, "flash")
                     currentScore.textContent = score;
                     tip = false;
                     currentIndex.removeClass('active');
@@ -64,7 +73,9 @@ angular.module('imdb-quiz').controller('QuizController', ['$scope', '$http', '$r
                 }else{
                     if(score > 0){
                         score--;
+                        animateMe(".current-score", "wobble");
                     }
+                    animateMe(this, "wobble");
                     currentScore.textContent = score;
                     scoreWatch(score);
                 }
