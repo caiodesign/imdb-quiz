@@ -23,7 +23,7 @@ config
         js: [config.app + '/assets/js/**/*.js'],
         sass: [config.app + '/assets/scss/**/*.scss'],
         img: [config.app + '/assets/img/**/*'],
-        fonts: [config.app + '/assets/fonts/*']
+        fonts: [config.app + '/assets/fonts/*.{eot,svg,ttf,woff,woff2}']
     };
 
 config

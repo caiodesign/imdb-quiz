@@ -1,18 +1,94 @@
 *{
     box-sizing: border-box;
 }
-input{
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    padding: 20px 10px;
-    border-radius: 3px;
-    font-size: calc(26/640 * 100vw);
-
-    @media(min-width: $desktop){
-        font-size: 26px;
+p, input, a, button{
+    font-family: $TradeGothic;
+    text-transform: uppercase;
+}
+.container{
+    width: 100%;
+    @media (min-width: $desktop){
+        margin: 0 auto;
+        min-width: 1004px;
+        max-width: 1140px;
+        width: auto;
     }
 }
-button[type="submit"]{
-    @extend input;
+
+%space{
+    margin-bottom: 20px;
+}
+
+%clear{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+%trade-gothic-title{
+    font-family: $TradeGothic;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: normal;
+    &:before{
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 100%;
+        height: 77%;
+        background: #000;
+        width: 1000px;
+        -webkit-transform: skew(-11deg,0);
+        -ms-transform: skew(-11deg,0);
+        transform: skew(-11deg,0);
+        margin: 3px 12px 0 0;
+    }
+}
+
+.button-red{
     background-color: $red;
-    cursor: pointer;
+    position: relative;
+    color: #fff;
+    padding: 15px;
+    &:before, &:after{
+        background-color: $red;
+        position: absolute;
+        top: 0;
+        content: "";
+        width: 11px;
+        height: 46px;
+        -webkit-transform: skew(-11deg,0);
+        -ms-transform: skew(-11deg,0);
+        transform: skew(-11deg,0);
+    }
+    &:before{
+        left: -6px;
+    }
+    &:after{
+        right: -6px;
+    }
+}
+
+.button-black{
+    @extend .button-red;
+    background-color: $black;
+    &:before, &:after{
+        background-color: $black;
+    }
+}
+
+.button-blue{
+    @extend .button-red;
+    background-color: $blue;
+    &:before, &:after{
+        background-color: $blue;
+    }
+}
+
+.button-orange{
+    @extend .button-red;
+    background-color: $orange;
+    &:before, &:after{
+        background-color: $orange;
+    }
 }

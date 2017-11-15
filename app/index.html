@@ -6,24 +6,40 @@
     </head>
     <body ng-controller="QuizController">
 
-        
+        <div class="preloader active">
+                <div class="spinner"></div>
+        </div>
+
         <div id="quiz">
-            <h1>IMDB Quiz</h1>
-            <p>What is the name of this Marvel Actor?</p>
-            <div>
-                <div class="actor" ng-repeat="actor in movieInfo.cast" data-index="{{$index}}" data-name="{{actor.name}}" on-finish-render="ngRepeatFinished">
-                    <img src="{{actor.image}}" alt="{{actor.name}}">
+
+            <div class="container">
+                <h1>Marvelous Quiz</h1>
+                <div class="wrap">
+                    <div>
+                        <p class="current-score"></p>
+                        <div class="actor" ng-repeat="actor in movieInfo.cast" data-index="{{$index}}" data-name="{{actor.name}}" on-finish-render="ngRepeatFinished">
+                            <img src="{{actor.image}}" alt="{{actor.name}}">
+                        </div>
+                    </div>
+                    <div>
+                        <p>What is the name of this Marvel Actor?</p>
+                        <input type="text" name="name" placeholder="Type the name of actor here">
+                        <button class="button-red" name="submit" type="submit">Answer</button>
+                        <div>
+                            <a href="javascript:void(0)" class="button-orange" id="tip">I give up, who is it?</a>
+                            <a href="javascript:void(0)" class="button-black" id="next">next</a>
+                        </div>
+                    </div>
                 </div>
+                <div>    
+                    <p class="copyright">
+                        Marvel 2017 - All rights reserved
+                    </p>
+                    <a href="whatsapp://send?text=The text to share!" class="button-black" id="share-whatsapp" data-action="share/whatsapp/share">Share score via whatsapp</a>
+                </div>
+
             </div>
-            <div>
-                <input type="text" name="name" placeholder="Digite o nome do ator aqui">
-                <button name="submit" type="submit">Answer</button>
-            </div>
-            <div>
-                <p>Score: <span class="current-score"></span></p>
-                <a href="javascript:void(0)" id="tip"></a>
-                <a href="whatsapp://send?text=The text to share!" id="share-whatsapp" data-action="share/whatsapp/share"></a>
-            </div>
+            
         </div>
 
 

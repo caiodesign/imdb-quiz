@@ -1,17 +1,128 @@
 #quiz{
-    > div{
-        &:first-of-type{
-            .actor{
-                display: none;
-                &.active{
+    .container{
+        margin-top: 20px;
+        .wrap{
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            @extend %space;
+            @media (min-width: $desktop){
+                flex-direction: row;
+                justify-content: center;
+            }
+            > div{
+                &:first-of-type{
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    margin: 0 auto 20px;
+                    @media(min-width: $desktop){
+                        flex-direction: row;
+                        margin: 0;
+                    }
+                    .actor{
+                        display: none;
+                        visibility: hidden;
+                        opacity: 0;
+                        &.active{
+                            display: block;
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                    }
+                }
+                &:not(:first-of-type){
+                    box-sizing: border-box;
+                    padding: 0 20px;
+                    @media(min-width: $desktop){
+                        width: 100%;
+                    }
+                    >div{
+                        clear: both;
+                        display: flex;
+                        justify-content: flex-end;
+                        &:after{
+                            content: "";
+                            display: block;
+                            clear: both;
+                        }
+                    }
+                }
+                p{
+                    font-size: calc(26/640 * 100vw);
+                    @extend %space;
+                    @media(min-width: $desktop){
+                        font-size: 18px;
+                    }
+                }
+                img{
+                    width: 214px;
+                    height: 317px;                  
+                }
+                input[type=text]{
+                    width: 100%;
                     display: block;
+                    border: 1px solid rgba(0, 0, 0, 0.3);
+                    padding: 20px 10px;
+                    border-radius: 3px;
+                    font-size: calc(22/640 * 100vw);
+                
+                    @media(min-width: $desktop){
+                        font-size: 26px;
+                    }
+                    @extend %space;
+                }
+                button[type=submit]{
+                    cursor: pointer;
+                    float: right;
+                    font-size: 16px;
+                    padding: 13px;
+                    @extend %space;
+                }
+                .current-score{
+                    font-size: calc(40/640 * 100vw);
+                    font-family: $TradeGothic;
+                    color: $white;
+                    background-color: $black;
+                    padding: 10px;
+                    @media(min-width: $desktop){
+                        font-size: 36px;
+                        max-height: 75px;
+                        padding: 20px;
+                        margin-right: 20px;
+                    }
                 }
             }
+            
         }
+
         #share-whatsapp{
             @media(min-width: $desktop){
                 display: none;
             }
         }
+
+        .copyright{
+            @extend .button-black;
+            display: none;
+            @media(min-width: $desktop){
+                display: block;
+            }
+        }
+    
+        h1{
+            font-size: calc(30/640 * 100vw);
+            width: 100%;
+            display: block;
+            text-align: center;
+            position: relative;
+            @extend %trade-gothic-title;
+            @extend %space;
+            @media(min-width: $desktop){
+                font-size: 30px;
+                text-align: left;
+            }
+        }
     }
+    
 }

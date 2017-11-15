@@ -13,9 +13,10 @@ angular.module('imdb-quiz').controller('QuizController', ['$scope', '$http', '$r
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         var listActors = document.querySelectorAll(".actor")
+        ,giveUp = "i give up, who is it?"
         ,randomActor = listActors[Math.floor(Math.random()*listActors.length)]
         ,addActive =  randomActor.classList.add("active")
-        ,tipElement =  $('#tip').text("Clique para exibir o nome do ator")
+        ,tipElement =  $('#tip').text(giveUp)
         ,currentScore = document.querySelector(".current-score")
         ,input = $('input:text')       
         ,score = 0
@@ -23,7 +24,6 @@ angular.module('imdb-quiz').controller('QuizController', ['$scope', '$http', '$r
 
         function scoreWatch(total){
             var shareElement = $('#share-whatsapp');
-            shareElement.text('Share score via whatsapp');
             shareElement.attr("href", "whatsapp://send?text=I scored " + total + ". Can you do better than me?")
         }
         scoreWatch(score);
@@ -41,10 +41,9 @@ angular.module('imdb-quiz').controller('QuizController', ['$scope', '$http', '$r
         $('button[type=submit]').on('click', function(event){
             
             event.preventDefault();
-            var currentActor = $('.actor.active').data('name')
-            ,inputValue = input.val()
+            var currentActor = $('.actor.active').data('name').toUpperCase()
+            ,inputValue = input.val().toUpperCase()
             ,currentIndex = $('.actor.active');
-
                 if(inputValue == currentActor){
                     if(tip == false){
                         score++;
@@ -53,7 +52,7 @@ angular.module('imdb-quiz').controller('QuizController', ['$scope', '$http', '$r
                     currentScore.textContent = score;
                     tip = false;
                     currentIndex.removeClass('active');
-                    tipElement.text("Clique para exibir o nome do ator");
+                    tipElement.text(giveUp);
                     scoreWatch(score);
                     if(currentIndex.data('index') >= listActors.length - 1){
                         listActors[0].classList.add('active');
@@ -70,6 +69,24 @@ angular.module('imdb-quiz').controller('QuizController', ['$scope', '$http', '$r
                     scoreWatch(score);
                 }
         });
+
+        $('#next').on('click', function(event){
+            event.preventDefault();
+            var currentIndex = $('.actor.active');
+            input.val(null);
+            currentIndex.removeClass('active');
+            tipElement.text(giveUp);
+
+            if(currentIndex.data('index') >= listActors.length - 1){
+                listActors[0].classList.add('active');
+            }else{
+                var i = currentIndex.data('index');
+                i++;
+                listActors[i].classList.add('active');
+            }
+        })
+
+        $('.preloader').removeClass("active");
 
     });    
 
